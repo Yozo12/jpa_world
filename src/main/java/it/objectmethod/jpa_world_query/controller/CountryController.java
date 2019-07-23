@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.objectmethod.jpa_world_query.domain.Country;
 import it.objectmethod.jpa_world_query.repository.CountryRepository;
 
 @RestController
@@ -21,4 +23,10 @@ public class CountryController {
 	 return listContinent;
 	 
  }
+  @GetMapping ("/nazioni")
+  public List<Country>listNationByContinent(@RequestParam("continent") String continent){
+	  List<Country>listNation=countryRepo.getNationbyContinent(continent);
+	
+return listNation;
+  }
 }

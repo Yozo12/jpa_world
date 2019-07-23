@@ -14,9 +14,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class City {
 	@GeneratedValue
 	@Id
-	@Column(name="ID")
+	@Column(name = "ID")
 	private int id;
-	@Column (name="CountryCode")
+	@Column(name = "CountryCode")
 	private String codeCountry;
 	@Column(name = "Name")
 	private String name;
@@ -26,8 +26,6 @@ public class City {
 	@JsonIgnore
 	@ManyToOne
 	private Country country;
-
-	
 
 	public String getName() {
 		return name;
@@ -68,6 +66,5 @@ public class City {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 }

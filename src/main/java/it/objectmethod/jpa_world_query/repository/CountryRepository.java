@@ -16,5 +16,4 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
 
 	public List<Country> findByContinent(String continent);
 
-
 }

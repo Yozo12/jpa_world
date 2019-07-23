@@ -15,22 +15,25 @@ import it.objectmethod.jpa_world_query.repository.CountryRepository;
 @CrossOrigin
 
 public class CountryController {
-	@Autowired CountryRepository countryRepo;
-	
- @GetMapping("/continent")
- public List<String>findDistinctContinent(){
-	 List<String>listContinent=countryRepo.getAllContinent();
-	 return listContinent;
-	 
- }
-  @GetMapping ("/nazioni")
-  public List<Country>listNationByContinent(@RequestParam("continent") String continent){
-	  List<Country>listNation=countryRepo.findByContinent(continent);
-return listNation;
-  }
-  @GetMapping("/allnazioni")
-  List<Country> allNation(){
-	  List<Country> nationList =countryRepo.findAll();
-  return nationList;
-}
+	@Autowired
+	CountryRepository countryRepo;
+
+	@GetMapping("/continent")
+	public List<String> findDistinctContinent() {
+		List<String> listContinent = countryRepo.getAllContinent();
+		return listContinent;
+
+	}
+
+	@GetMapping("/nazioni")
+	public List<Country> listNationByContinent(@RequestParam("continent") String continent) {
+		List<Country> listNation = countryRepo.findByContinent(continent);
+		return listNation;
+	}
+
+	@GetMapping("/allnazioni")
+	List<Country> allNation() {
+		List<Country> nationList = countryRepo.findAll();
+		return nationList;
+	}
 }

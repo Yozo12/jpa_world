@@ -16,16 +16,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "country")
 public class Country {
-  @Id 
-  @Column(name="Code")
-  private String code;
+	@Id
+	@Column(name = "Code")
+	private String code;
 	@Column(name = "Name")
 	private String name;
 	@Column(name = "Continent")
 	private String continent;
 	@Column(name = "Population")
 	private int population;
-    
+
 	@JoinColumn(name = "CountryCode")
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -44,7 +44,7 @@ public class Country {
 	}
 
 	public void setName(String name) {
-	   this.	name = name;
+		this.name = name;
 	}
 
 	public String getContinent() {
@@ -71,5 +71,4 @@ public class Country {
 		this.city = city;
 	}
 
-	
 }

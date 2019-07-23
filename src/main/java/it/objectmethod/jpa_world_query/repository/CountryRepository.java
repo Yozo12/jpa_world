@@ -14,8 +14,7 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
 	@Query("select distinct continent  from Country")
 	public List<String> getAllContinent();
 
-	@Query("select Name , Code , continent , population from Country where continent=?1")
-	public List<Country> getNationbyContinent(String continentParam);
+	public List<Country> findByContinent(String continent);
 
 
 }

@@ -11,36 +11,40 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "country")
 public class Country {
   @Id 
-  private String Code;
+  @Column(name="Code")
+  private String code;
 	@Column(name = "Name")
-	private String Name;
+	private String name;
 	@Column(name = "Continent")
 	private String continent;
 	@Column(name = "Population")
 	private int population;
-
+    
 	@JoinColumn(name = "CountryCode")
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<City> city;
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public String getCode() {
-		return Code;
+		return code;
 	}
 
 	public void setCode(String code) {
-		Code = code;
+		this.code = code;
 	}
 
 	public void setName(String name) {
-		Name = name;
+	   this.	name = name;
 	}
 
 	public String getContinent() {

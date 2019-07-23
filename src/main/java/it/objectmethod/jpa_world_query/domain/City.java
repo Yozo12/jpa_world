@@ -15,7 +15,8 @@ public class City {
 	@GeneratedValue
 	@Id
 	private Long ID;
-	
+	@Column (name="CountryCode")
+	private String codeCountry;
 	@Column(name = "Name")
 	private String name;
 	@Column(name = "Population")
@@ -55,6 +56,14 @@ public class City {
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public String getCodeCountry() {
+		return codeCountry;
+	}
+
+	public void setCodeCountry(String codeCountry) {
+		this.codeCountry = codeCountry;
 	}
 
 

@@ -25,8 +25,12 @@ public class CountryController {
  }
   @GetMapping ("/nazioni")
   public List<Country>listNationByContinent(@RequestParam("continent") String continent){
-	  List<Country>listNation=countryRepo.getNationbyContinent(continent);
-	
+	  List<Country>listNation=countryRepo.findByContinent(continent);
 return listNation;
   }
+  @GetMapping("/allnazioni")
+  List<Country> allNation(){
+	  List<Country> nationList =countryRepo.findAll();
+  return nationList;
+}
 }

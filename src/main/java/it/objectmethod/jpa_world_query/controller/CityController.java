@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.objectmethod.jpa_world_query.constants.Constants;
 import it.objectmethod.jpa_world_query.domain.City;
 import it.objectmethod.jpa_world_query.repository.CityRepository;
 
@@ -65,4 +66,25 @@ public class CityController {
 		return new ResponseEntity<Integer>(HttpStatus.OK);
 	}
 
+	@GetMapping("/citta")
+	public List<City> ordCity(@RequestParam("codNazione") String codNazione, @RequestParam("ord") String ord) {
+		List<City> cityList = null;
+
+		if (ord.equals(Constants.AZ)) {
+			cityList = cityRepo.findByCodeCountryOrderByNameAsc(codNazione);
+
+		}
+		if (ord.equals(Constants.ZA)) {
+			cityList = cityRepo.findByCodeCountryOrderByNameDesc(codNazione);
+		}
+		if (ord.equals(Constants.POPA)) {
+			cityList = cityRepo.findByCodeCountryOrderByPopulationAsc(codNazione);
+
+		}
+		if (ord.equals(Constants.POPD)) {
+			cityList = cityRepo.findByCodeCountryOrderByPopulationDesc(codNazione);
+
+		}
+		return cityList;
+	}
 }

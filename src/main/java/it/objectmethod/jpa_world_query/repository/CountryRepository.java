@@ -15,5 +15,6 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
 	public List<String> getAllContinent();
 
 	public List<Country> findByContinent(String continent);
+	public Country findByCode(String code);
 
 }

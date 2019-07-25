@@ -32,8 +32,16 @@ public class CountryController {
 	}
 
 	@GetMapping("/allnazioni")
-	List<Country> allNation() {
+	public List<Country> allNation() {
 		List<Country> nationList = countryRepo.findAll();
 		return nationList;
 	}
+
+	@GetMapping ("/nationbycode")
+	public Country nationByCode (@RequestParam("code") String code) {
+		Country nation=countryRepo.findByCode(code);
+		return nation;
+		
+	
+}
 }

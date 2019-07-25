@@ -21,6 +21,7 @@ public interface CityRepository extends JpaRepository<City, Long> {
 	public List<City> findByCodeCountryOrderByPopulationAsc(String codNazione);
 
 	public List<City> findByCodeCountryOrderByPopulationDesc(String codNazione);
+	
 
 //	@Query("UPDATE City SET city.name =?1, city.population=?2, city.codeCountry =?3 where city.id= ?4")
 //	public City modCity(City city);

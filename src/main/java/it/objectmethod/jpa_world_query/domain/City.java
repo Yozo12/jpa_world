@@ -1,13 +1,13 @@
 package it.objectmethod.jpa_world_query.domain;
 
+import java.beans.Transient;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "city")
@@ -22,10 +22,6 @@ public class City {
 	private String name;
 	@Column(name = "Population")
 	private int population;
-
-	@JsonIgnore
-	@ManyToOne
-	private Country country;
 
 	public String getName() {
 		return name;
@@ -43,13 +39,6 @@ public class City {
 		this.population = population;
 	}
 
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
-	}
 
 	public String getCodeCountry() {
 		return codeCountry;

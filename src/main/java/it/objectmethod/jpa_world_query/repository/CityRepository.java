@@ -2,7 +2,9 @@ package it.objectmethod.jpa_world_query.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import it.objectmethod.jpa_world_query.domain.City;
@@ -21,6 +23,8 @@ public interface CityRepository extends JpaRepository<City, Long> {
 	public List<City> findByCodeCountryOrderByPopulationAsc(String codNazione);
 
 	public List<City> findByCodeCountryOrderByPopulationDesc(String codNazione);
+	@Query("Select c from City c where c.name like concat(?1,'%')")
+	public List<City>findCityLike(String name ,Pageable pageble);
 	
 
 //	@Query("UPDATE City SET city.name =?1, city.population=?2, city.codeCountry =?3 where city.id= ?4")

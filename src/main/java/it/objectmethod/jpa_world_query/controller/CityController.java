@@ -108,19 +108,24 @@ public class CityController {
 		Author author = authorRepo.findByIdAuthor(idauthor);
 		return author;
 	}
-	
 
 	@PostMapping("/insertauthor")
-	public ResponseEntity<Integer> insertAuthor(@RequestBody Author author) {
+	public ResponseEntity<Author> insertAuthor(@RequestBody Author author) {
+		Author authorfind = null;
 		try {
-			if (author.getIdauthor() == 0 || author.getIdauthor() != 0) {
-				authorRepo.save(author);
+			authorfind = authorRepo.findByName(author.getName());
+			if (authorfind == null && author.getIdauthor() == 0) {
+
+				author = authorRepo.save(author);
+			} else {
+				return new ResponseEntity<Author>(authorfind, HttpStatus.INTERNAL_SERVER_ERROR);
 
 			}
+
 		} catch (Exception e) {
-			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Author>(authorfind, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Integer>(HttpStatus.OK);
+		return new ResponseEntity<Author>(author, HttpStatus.OK);
 	}
 
 	@PostMapping("/insertreview")
@@ -135,14 +140,27 @@ public class CityController {
 		}
 		return new ResponseEntity<Integer>(HttpStatus.OK);
 	}
+
 	@GetMapping("/citylike")
-	public List<City>findCitybyLike(@RequestParam("name")String name){
-		List<City> cityList=cityRepo.findCityLike(name, new PageRequest(0, 10));
+	public List<City> findCitybyLike(@RequestParam("name") String name) {
+		List<City> cityList = cityRepo.findCityLike(name, new PageRequest(0, 10));
 		return cityList;
 	}
+
 	@GetMapping("/allcities")
-	public List <City>allCiteis(){
-		List<City>cityList=cityRepo.findAll();
+	public List<City> allCiteis() {
+		List<City> cityList = cityRepo.findAll();
 		return cityList;
 	}
+
+	@GetMapping("/login")
+	public ResponseEntity<Author> loginAuthor(@RequestParam("name") String name, @RequestParam("pass") String pass) {
+		Author author = authorRepo.findByNameAndPassword(name, pass);
+		if (author != null) {
+			return new ResponseEntity<Author>(author, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Author>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
 }

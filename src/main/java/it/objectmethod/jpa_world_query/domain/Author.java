@@ -14,7 +14,10 @@ public class Author {
 	@GeneratedValue
 	@Column(name = "idauthor")
 	private int idauthor;
-
+    @Column (name="password1")
+    private  String pass1;
+    @Column (name="password2")
+    private  String pass2;
 	@Column(name = "name")
 	private String name;
 
@@ -33,6 +36,23 @@ public class Author {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public String getPass1() {
+		return pass1;
+	}
+
+	public void setPass1(String pass1) {
+		this.pass1 = pass1;
+	}
+
+	public String getPass2() {
+		return pass2;
+	}
+
+	public void setPass2(String pass2) {
+		this.pass2 = pass2;
+	}
+	
 	
 	
 }
